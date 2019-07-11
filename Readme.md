@@ -1,4 +1,4 @@
-### SDK PHP Cielo Pagamento por Link - API v1
+### SDK php para integração com a API Pagamento por Link da Cielo - API v1
 E-commerce
 
 Todos os passos e processos referentes à integração com o sistema de Pagamento por Link da Cielo via as funcionalidades da API.
@@ -25,7 +25,7 @@ use CieloLink\API\Payment;
 use CieloLink\API\Shipping;
 use CieloLink\API\Recurrent;
 
-require_once '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 $clientId      = "dc9d6efa-b582-4ac8-ac59-12c57245df2a";
 $clientSecret  = "d4bAh9FeILpJvntoVceFhJ8ETdqVJetYpu4kZlZXeuA8r9dS1PPdZXmS5egN6a9n";
