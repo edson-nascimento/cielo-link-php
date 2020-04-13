@@ -1,4 +1,4 @@
-### SDK php para integração com a API Pagamento por Link da Cielo - API v1
+### SDK php para integração com a API da Cielo Super Link - API v1
 E-commerce
 
 Todos os passos e processos referentes à integração com o sistema de Pagamento por Link da Cielo via as funcionalidades da API.
