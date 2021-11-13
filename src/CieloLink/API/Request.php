@@ -107,7 +107,7 @@ class Request {
                 'Content-Type: application/json; charset=utf-8'
             ),
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2,
+            CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2,
             CURLOPT_SSL_VERIFYPEER => false
         );
         
