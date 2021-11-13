@@ -6,8 +6,8 @@ namespace CieloLink\API;
  *
  * @package CieloLink\API
  */
-class Payment implements \JsonSerializable {
-    
+class Payment implements \JsonSerializable
+{
     const TYPE_ASSET        = "Asset";
     const TYPE_DIGITAL      = "Digital";
     const TYPE_SERVICE      = "Service";
@@ -42,26 +42,26 @@ class Payment implements \JsonSerializable {
     
     private $jsonResponse;
     
-    public function jsonSerialize() {
-        
-        return array_filter(get_object_vars($this), function($item, $key){
+    public function jsonSerialize()
+    {
+        return array_filter(get_object_vars($this), function ($item, $key) {
             return !is_null($item) && !in_array($key, ['id', 'shortUrl', 'links', 'jsonResponse']);
         }, ARRAY_FILTER_USE_BOTH);
     }
 
-    public function populateByArray(array $response) {
-        
-        foreach ($response as $prop => $value){
+    public function populateByArray(array $response)
+    {
+        foreach ($response as $prop => $value) {
             if (!is_array($value) && property_exists($this, $prop)) {
                 $this->{$prop} = $value;
             }
         }
         
-        if ($response['shipping'] && is_array($response['shipping'])) {
+        if (isset($response['shipping']) && is_array($response['shipping'])) {
             $this->shipping()->populateByArray($response['shipping']);
         }
 
-        if ($response['recurrent'] && is_array($response['recurrent'])) {
+        if (isset($response['recurrent']) && is_array($response['recurrent'])) {
             $this->recurrent()->populateByArray($response['recurrent']);
         }
 
@@ -73,14 +73,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * @param string $id
      */
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         
         return $this;
@@ -89,14 +91,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * @param string $name
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
         
         return $this;
@@ -105,14 +109,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
      * @param string $description
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
         
         return $this;
@@ -121,14 +127,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return mixed
      */
-    public function getShowDescription() {
+    public function getShowDescription()
+    {
         return $this->showDescription;
     }
 
     /**
      * @param mixed $showDescription
      */
-    public function setShowDescription($showDescription) {
+    public function setShowDescription($showDescription)
+    {
         $this->showDescription = $showDescription;
         
         return $this;
@@ -137,14 +145,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return integer
      */
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->price;
     }
 
     /**
      * @param mixed $price
      */
-    public function setPrice($price) {
+    public function setPrice($price)
+    {
         $this->price = (int)($price * 100);
         
         return $this;
@@ -153,14 +163,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getExpirationDate() {
+    public function getExpirationDate()
+    {
         return $this->expirationDate;
     }
 
     /**
      * @param string $expirationDate
      */
-    public function setExpirationDate($expirationDate) {
+    public function setExpirationDate($expirationDate)
+    {
         $this->expirationDate = $expirationDate;
         
         return $this;
@@ -169,14 +181,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getWeight() {
+    public function getWeight()
+    {
         return $this->weight;
     }
 
     /**
      * @param string $weight
      */
-    public function setWeight($weight) {
+    public function setWeight($weight)
+    {
         $this->weight = $weight;
         
         return $this;
@@ -185,14 +199,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getSoftDescriptor() {
+    public function getSoftDescriptor()
+    {
         return $this->softDescriptor;
     }
 
     /**
      * @param string $softDescriptor
      */
-    public function setSoftDescriptor($softDescriptor) {
+    public function setSoftDescriptor($softDescriptor)
+    {
         $this->softDescriptor = $softDescriptor;
         
         return $this;
@@ -201,14 +217,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
     /**
      * @param string $type
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
         
         return $this;
@@ -217,14 +235,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return Shipping|null
      */
-    public function getShipping() {
+    public function getShipping()
+    {
         return $this->shipping;
     }
 
     /**
      * @param Shipping $shipping
      */
-    public function setShipping(Shipping $shipping) {
+    public function setShipping(Shipping $shipping)
+    {
         $this->shipping = $shipping;
         
         return $this;
@@ -233,7 +253,8 @@ class Payment implements \JsonSerializable {
     /**
      * @return Shipping $shipping
      */
-    public function shipping() {
+    public function shipping()
+    {
         $shipping = new Shipping();
         $this->setShipping($shipping);
         
@@ -243,14 +264,16 @@ class Payment implements \JsonSerializable {
     /**
      * @return Recurrent
      */
-    public function getRecurrent() {
+    public function getRecurrent()
+    {
         return $this->recurrent;
     }
 
     /**
      * @param Recurrent $recurrent
      */
-    public function setRecurrent(Recurrent $recurrent) {
+    public function setRecurrent(Recurrent $recurrent)
+    {
         $this->recurrent = $recurrent;
         
         return $this;
@@ -259,7 +282,8 @@ class Payment implements \JsonSerializable {
     /**
      * @return Recurrent $shipping
      */
-    public function recurrent() {
+    public function recurrent()
+    {
         $recurrent = new Recurrent();
         $this->setRecurrent($recurrent);
         
@@ -268,28 +292,32 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getShortUrl() {
+    public function getShortUrl()
+    {
         return $this->shortUrl;
     }
 
     /**
      * @param string $shortUrl
      */
-    public function setShortUrl($shortUrl) {
+    public function setShortUrl($shortUrl)
+    {
         $this->shortUrl = $shortUrl;
     }
 
     /**
      * @return mixed
      */
-    public function getLinks() {
+    public function getLinks()
+    {
         return $this->links;
     }
 
     /**
      * @param mixed $links
      */
-    public function setLinks($links) {
+    public function setLinks($links)
+    {
         $this->links = $links;
         
         return $this;
@@ -298,19 +326,18 @@ class Payment implements \JsonSerializable {
     /**
      * @return string
      */
-    public function getJsonResponse() {
+    public function getJsonResponse()
+    {
         return $this->jsonResponse;
     }
 
     /**
      * @param string $jsonResponse
      */
-    public function setJsonResponse($jsonResponse) {
+    public function setJsonResponse($jsonResponse)
+    {
         $this->jsonResponse = $jsonResponse;
         
         return $this;
     }
-
-
-    
 }
