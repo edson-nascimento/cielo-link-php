@@ -1,5 +1,5 @@
 {
-  "name": "edson-nascimento/cielo-link-php",
+  "name": "acheicorridas/cielo-link-php",
   "description": "SDK php para integração com a API de Pagamento por Link Cielo new commerce",
   "minimum-stability": "stable",
   "license": "MIT",
